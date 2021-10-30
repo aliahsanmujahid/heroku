@@ -25,19 +25,19 @@ namespace API.Extensions
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>
             {
-                var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+                //var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
     string connStr;
 
     // Depending on if in development or production, use either Heroku-provided
     // connection string, or development connection string from env var.
-    if (env == "Development")
-    {
+    // if (env == "Development")
+    // {
         // Use connection string from file.
-        connStr = config.GetConnectionString("DefaultConnection");
-    }
-    else
-    {
+       // connStr = config.GetConnectionString("DefaultConnection");
+    // }
+    // else
+    // {
         // Use connection string provided at runtime by Heroku.
         var connUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
 
@@ -53,7 +53,7 @@ namespace API.Extensions
         var pgPort = pgHostPort.Split(":")[1];
 
         connStr = $"Server={pgHost};Port={pgPort};User Id={pgUser};Password={pgPass};Database={pgDb}";
-    }
+   // }
 
     // Whether the connection string came from the local development configuration file
     // or from the environment variable from Heroku, use it to set up your DbContext.
